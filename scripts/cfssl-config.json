@@ -1,0 +1,29 @@
+{
+    "signing": {
+        "default": {
+            "expiry": "876000h"
+        },
+        "profiles": {
+            "intermediate": {
+                "usages": [
+                    "cert sign",
+                    "crl sign"
+                ],
+                "expiry": "876000h",
+                "is_ca": true
+            },
+            "signing": {
+                "usages": [
+                    "digital signature"
+                ],
+                "expiry": "876000h"
+            },
+            "encipherment": {
+                "usages": [
+                    "key encipherment"
+                ],
+                "expiry": "876000h"
+            }
+        }
+    }
+}

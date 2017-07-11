@@ -1,0 +1,11 @@
+apply from: 'publish.gradle'
+apply plugin: 'java'
+
+repositories {
+  maven { url 'https://artifactory.ida.digital.cabinet-office.gov.uk/artifactory/whitelisted-repos' }
+}
+
+dependencies {
+  compile 'com.google.guava:guava:18.0',
+          'commons-io:commons-io:2.4'
+}

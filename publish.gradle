@@ -1,0 +1,27 @@
+apply plugin: 'maven-publish'
+apply plugin: 'java'
+
+task sourceJar(type: Jar) {
+    from sourceSets.main.allSource
+}
+
+publishing {
+    publications {
+        mavenJava(MavenPublication) {
+            groupId = "uk.gov.ida"
+            artifactId = "ida-dev-pki"
+            version = "1.1.0-${System.getenv('BUILD_NUMBER') ?: 'SNAPSHOT'}"
+
+            from components.java
+        }
+    }
+}
+
+publishing {
+    repositories {
+        maven {
+            url "/srv/maven" // change to point to your repo, e.g. http://my.org/repo
+        }
+    }
+}
+

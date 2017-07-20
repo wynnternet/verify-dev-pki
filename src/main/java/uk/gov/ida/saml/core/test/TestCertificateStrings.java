@@ -130,6 +130,10 @@ public final class TestCertificateStrings {
             .put(TestEntityIds.TEST_RP_MS, TEST_RP_MS_PUBLIC_SIGNING_CERT)
             .put(TestEntityIds.HEADLESS_RP, HEADLESS_RP_PUBLIC_SIGNING_CERT)
             .put(TestEntityIds.HEADLESS_RP_MS, HEADLESS_RP_MS_PUBLIC_SIGNING_CERT)
+            .put(TestEntityIds.STUB_IDP_ONE, STUB_IDP_PUBLIC_PRIMARY_CERT)
+            .put(TestEntityIds.STUB_IDP_TWO, STUB_IDP_PUBLIC_PRIMARY_CERT)
+            .put(TestEntityIds.STUB_IDP_THREE, STUB_IDP_PUBLIC_PRIMARY_CERT)
+            .put(TestEntityIds.STUB_IDP_FOUR, STUB_IDP_PUBLIC_PRIMARY_CERT)
             .build();
     }
 
@@ -142,6 +146,10 @@ public final class TestCertificateStrings {
             .put(TestEntityIds.TEST_RP_MS, TEST_RP_MS_PRIVATE_SIGNING_KEY)
             .put(TestEntityIds.HEADLESS_RP, HEADLESS_RP_PRIVATE_SIGNING_KEY)
             .put(TestEntityIds.HEADLESS_RP_MS, HEADLESS_RP_MS_PRIVATE_SIGNING_KEY)
+            .put(TestEntityIds.STUB_IDP_ONE, STUB_IDP_PUBLIC_PRIMARY_PRIVATE_KEY)
+            .put(TestEntityIds.STUB_IDP_TWO, STUB_IDP_PUBLIC_PRIMARY_PRIVATE_KEY)
+            .put(TestEntityIds.STUB_IDP_THREE, STUB_IDP_PUBLIC_PRIMARY_PRIVATE_KEY)
+            .put(TestEntityIds.STUB_IDP_FOUR, STUB_IDP_PUBLIC_PRIMARY_PRIVATE_KEY)
             .build();
     }
 

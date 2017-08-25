@@ -21,19 +21,19 @@ rm -rf $PKI_DIR && mkdir -p $CA_CERTS_DIR $DEV_KEYS_DIR
 # Create the CA certs
 cd $CA_CERTS_DIR
 
-sed 's/$COMMON_NAME/IDAP Dev Root CA/' $CSR_TEMPLATE | cfssl genkey -initca /dev/stdin | cfssljson -bare ida-root-ca
+sed 's/$COMMON_NAME/Dev Root CA/' $CSR_TEMPLATE | cfssl genkey -initca /dev/stdin | cfssljson -bare dev-root-ca
 
 function createInterCa {
 	name=$1
 	commonName=$2
 	sed "s/\$COMMON_NAME/$commonName/" $CSR_TEMPLATE |
-	cfssl gencert -config $CFSSL_CONFIG -profile intermediate -ca ./ida-root-ca.pem -ca-key ./ida-root-ca-key.pem /dev/stdin |
+	cfssl gencert -config $CFSSL_CONFIG -profile intermediate -ca ./dev-root-ca.pem -ca-key ./dev-root-ca-key.pem /dev/stdin |
 	cfssljson -bare $name
 }
-createInterCa idap-core-ca 'IDAP Core CA Dev'
-createInterCa ida-intermediary-ca 'IDA Inter CA Dev'
-createInterCa ida-intermediary-rp-ca 'IDA Inter RP CA Dev'
-createInterCa ida-metadata-ca 'IDA Metadata CA Dev'
+createInterCa dev-hub-ca 'Dev Hub CA'
+createInterCa dev-idp-ca 'Dev IDP CA'
+createInterCa dev-rp-ca 'Dev RP CA'
+createInterCa dev-metadata-ca 'Dev Metadata CA'
 
 # Add .test to all of the generated pems (to match the old file names)
 for file in *.pem; do mv $file $file.test; done
@@ -51,22 +51,22 @@ function createLeaf {
 	cfssl gencert -config $CFSSL_CONFIG -profile $profile -ca $CA_CERTS_DIR/$ca.pem.test -ca-key $CA_CERTS_DIR/$ca-key.pem.test /dev/stdin |
 	cfssljson -bare $name
 }
-createLeaf metadata_signing_a                 ida-metadata-ca        signing      'IDA Metadata Signing Dev A'
-createLeaf metadata_signing_b                 ida-metadata-ca        signing      'IDA Metadata Signing Dev B'
-createLeaf hub_signing_primary                idap-core-ca           signing      'IDA Hub Signing Dev'
-createLeaf hub_encryption_primary             idap-core-ca           encipherment 'IDA Hub Encryption Dev'
-createLeaf sample_rp_encryption_primary       ida-intermediary-rp-ca encipherment 'IDA Sample RP Encryption Dev'
-createLeaf sample_rp_msa_encryption_primary   ida-intermediary-rp-ca encipherment 'IDA Sample RP MSA Encryption Dev'
-createLeaf sample_rp_msa_signing_primary      ida-intermediary-rp-ca signing      'IDA Sample RP MSA Signing Dev'
-createLeaf sample_rp_signing_primary          ida-intermediary-rp-ca signing      'IDA Sample RP Signing Dev'
-createLeaf stub_idp_signing_primary           ida-intermediary-ca    signing      'IDA Stub IDP Signing Dev'
-createLeaf hub_signing_secondary              idap-core-ca           signing      'IDA Hub Signing Dev'
-createLeaf hub_encryption_secondary           idap-core-ca           encipherment 'IDA Hub Encryption Dev'
-createLeaf sample_rp_encryption_secondary     ida-intermediary-rp-ca encipherment 'IDA Sample RP Encryption Dev'
-createLeaf sample_rp_msa_encryption_secondary ida-intermediary-rp-ca encipherment 'IDA Sample RP MSA Encryption Dev'
-createLeaf sample_rp_msa_signing_secondary    ida-intermediary-rp-ca signing      'IDA Sample RP MSA Signing Dev'
-createLeaf sample_rp_signing_secondary        ida-intermediary-rp-ca signing      'IDA Sample RP Signing Dev'
-createLeaf stub_idp_signing_secondary         ida-intermediary-ca    signing      'IDA Stub IDP Signing Dev'
+createLeaf metadata_signing_a                 dev-metadata-ca  signing       'Dev Metadata Signing A'
+createLeaf metadata_signing_b                 dev-metadata-ca  signing       'Dev Metadata Signing B'
+createLeaf hub_signing_primary                dev-hub-ca       signing       'Dev Hub Signing'
+createLeaf hub_encryption_primary             dev-hub-ca       encipherment  'Dev Hub Encryption'
+createLeaf sample_rp_encryption_primary       dev-rp-ca        encipherment  'Dev Sample RP Encryption'
+createLeaf sample_rp_msa_encryption_primary   dev-rp-ca        encipherment  'Dev Sample RP MSA Encryption'
+createLeaf sample_rp_msa_signing_primary      dev-rp-ca        signing       'Dev Sample RP MSA Signing'
+createLeaf sample_rp_signing_primary          dev-rp-ca        signing       'Dev Sample RP Signing'
+createLeaf stub_idp_signing_primary           dev-idp-ca       signing       'Dev Stub IDP Signing'
+createLeaf hub_signing_secondary              dev-hub-ca       signing       'Dev Hub Signing 2'
+createLeaf hub_encryption_secondary           dev-hub-ca       encipherment  'Dev Hub Encryption 2'
+createLeaf sample_rp_encryption_secondary     dev-rp-ca        encipherment  'Dev Sample RP Encryption 2'
+createLeaf sample_rp_msa_encryption_secondary dev-rp-ca        encipherment  'Dev Sample RP MSA Encryption 2'
+createLeaf sample_rp_msa_signing_secondary    dev-rp-ca        signing       'Dev Sample RP MSA Signing 2'
+createLeaf sample_rp_signing_secondary        dev-rp-ca        signing       'Dev Sample RP Signing 2'
+createLeaf stub_idp_signing_secondary         dev-idp-ca       signing       'Dev Stub IDP Signing 2'
 
 # Convert all the keys to .pk8 files
 for file in *-key.pem

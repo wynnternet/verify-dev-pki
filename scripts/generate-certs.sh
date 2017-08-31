@@ -27,8 +27,8 @@ function createInterCa {
 	name=$1
 	commonName=$2
 	sed "s/\$COMMON_NAME/$commonName/" $CSR_TEMPLATE |
-	cfssl gencert -config $CFSSL_CONFIG -profile intermediate -ca ./dev-root-ca.pem -ca-key ./dev-root-ca-key.pem /dev/stdin |
-	cfssljson -bare $name
+	cfssl gencert -config $CFSSL_CONFIG -profile intermediate -ca ./dev-root-ca.pem -ca-key ./dev-root-ca-key.pem /dev/stdin \
+	  | cfssljson -bare $name
 }
 createInterCa dev-hub-ca 'Dev Hub CA'
 createInterCa dev-idp-ca 'Dev IDP CA'
@@ -41,6 +41,7 @@ for file in *.pem; do mv $file $file.test; done
 # Generate leaf certs and keys
 
 cd $DEV_KEYS_DIR
+rm -f ocsp_responses
 
 function createLeaf {
 	name=$1
@@ -48,8 +49,10 @@ function createLeaf {
 	profile=$3
 	commonName=$4
 	sed "s/\$COMMON_NAME/$commonName/" $CSR_TEMPLATE |
-	cfssl gencert -config $CFSSL_CONFIG -profile $profile -ca $CA_CERTS_DIR/$ca.pem.test -ca-key $CA_CERTS_DIR/$ca-key.pem.test /dev/stdin |
-	cfssljson -bare $name
+	cfssl gencert -config $CFSSL_CONFIG -profile $profile -ca $CA_CERTS_DIR/$ca.pem.test -ca-key $CA_CERTS_DIR/$ca-key.pem.test /dev/stdin \
+    | cfssljson -bare $name
+
+  #cfssl ocspsign -ca $CA_CERTS_DIR/$ca.pem.test -cert ${name}.pem | cfssljson -bare -stdout >> ocsp_responses
 }
 createLeaf metadata_signing_a                 dev-metadata-ca  signing       'Dev Metadata Signing A'
 createLeaf metadata_signing_b                 dev-metadata-ca  signing       'Dev Metadata Signing B'

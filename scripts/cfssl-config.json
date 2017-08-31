@@ -1,6 +1,7 @@
 {
     "signing": {
         "default": {
+            "ocsp_url": "http://localhost:58889",
             "expiry": "876000h"
         },
         "profiles": {

@@ -5,6 +5,13 @@
             "expiry": "876000h"
         },
         "profiles": {
+            "ocsp": {
+                "usages": [
+                    "digital signature",
+                    "ocsp signing"
+                ],
+                "expiry": "876000h"
+            },
             "intermediate": {
                 "usages": [
                     "cert sign",

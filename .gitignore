@@ -16,5 +16,5 @@ deploy/perf_graphs
 *~
 *.swp
 
-metadata/output
+metadata
 truststores

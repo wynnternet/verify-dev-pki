@@ -22,6 +22,10 @@ public abstract class PemCertificateStrings {
 
     public static final String HUB_TEST_PUBLIC_SIGNING_CERT =  readFile("hub_signing_primary.crt");
 
+    public static final String HUB_CONNECTOR_TEST_PUBLIC_ENCRYPTION_CERT = readFile("hub_connector_encryption_primary.crt");
+
+    public static final String HUB_CONNECTOR_TEST_PUBLIC_SIGNING_CERT =  readFile("hub_connector_signing_primary.crt");
+
     public static final String HUB_TEST_SECONDARY_PUBLIC_SIGNING_CERT = readFile("hub_signing_secondary.crt");
 
     public static final String SAMPLE_RP_PUBLIC_ENCRYPTION_CERT = readFile("sample_rp_encryption_primary.crt");
@@ -35,6 +39,10 @@ public abstract class PemCertificateStrings {
     public static final String STUB_IDP_PUBLIC_SIGNING_CERT = readFile("stub_idp_signing_primary.crt");
 
     public static final String STUB_IDP_PUBLIC_SIGNING_SECONDARY_CERT = readFile("stub_idp_signing_secondary.crt");
+
+    public static final String STUB_COUNTRY_PUBLIC_SIGNING_CERT = readFile("stub_country_signing_primary.crt");
+
+    public static final String STUB_COUNTRY_PUBLIC_SIGNING_SECONDARY_CERT = readFile("stub_country_signing_secondary.crt");
 
     public static final String METADATA_SIGNING_A_PUBLIC_CERT = readFile("metadata_signing_a.crt");
 

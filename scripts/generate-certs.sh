@@ -55,11 +55,14 @@ createLeaf metadata_signing_a                 ida-metadata-ca        signing    
 createLeaf metadata_signing_b                 ida-metadata-ca        signing      'IDA Metadata Signing Dev B'
 createLeaf hub_signing_primary                idap-core-ca           signing      'IDA Hub Signing Dev'
 createLeaf hub_encryption_primary             idap-core-ca           encipherment 'IDA Hub Encryption Dev'
+createLeaf hub_connector_signing_primary      idap-core-ca           signing      'IDA Connector Hub Signing Dev'
+createLeaf hub_connector_encryption_primary   idap-core-ca           encipherment 'IDA Connector Hub Encryption Dev'
 createLeaf sample_rp_encryption_primary       ida-intermediary-rp-ca encipherment 'IDA Sample RP Encryption Dev'
 createLeaf sample_rp_msa_encryption_primary   ida-intermediary-rp-ca encipherment 'IDA Sample RP MSA Encryption Dev'
 createLeaf sample_rp_msa_signing_primary      ida-intermediary-rp-ca signing      'IDA Sample RP MSA Signing Dev'
 createLeaf sample_rp_signing_primary          ida-intermediary-rp-ca signing      'IDA Sample RP Signing Dev'
 createLeaf stub_idp_signing_primary           ida-intermediary-ca    signing      'IDA Stub IDP Signing Dev'
+createLeaf stub_country_signing_primary       ida-intermediary-ca    signing      'IDA Stub Country Signing Dev'
 createLeaf hub_signing_secondary              idap-core-ca           signing      'IDA Hub Signing Dev'
 createLeaf hub_encryption_secondary           idap-core-ca           encipherment 'IDA Hub Encryption Dev'
 createLeaf sample_rp_encryption_secondary     ida-intermediary-rp-ca encipherment 'IDA Sample RP Encryption Dev'
@@ -67,6 +70,7 @@ createLeaf sample_rp_msa_encryption_secondary ida-intermediary-rp-ca enciphermen
 createLeaf sample_rp_msa_signing_secondary    ida-intermediary-rp-ca signing      'IDA Sample RP MSA Signing Dev'
 createLeaf sample_rp_signing_secondary        ida-intermediary-rp-ca signing      'IDA Sample RP Signing Dev'
 createLeaf stub_idp_signing_secondary         ida-intermediary-ca    signing      'IDA Stub IDP Signing Dev'
+createLeaf stub_country_signing_secondary     ida-intermediary-ca    signing      'IDA Stub Country Signing Dev'
 
 # Convert all the keys to .pk8 files
 for file in *-key.pem

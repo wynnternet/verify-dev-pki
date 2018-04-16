@@ -17,6 +17,8 @@ public abstract class PemCertificateStrings {
             throw Throwables.propagate(e);
         }
     }
+    
+    public static final String EXPIRED_SIGNING_PUBLIC_CERT = readFile("expired_signing.crt");
 
     public static final String HUB_TEST_PUBLIC_ENCRYPTION_CERT = readFile("hub_encryption_primary.crt");
 

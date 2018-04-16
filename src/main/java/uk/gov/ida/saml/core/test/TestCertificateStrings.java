@@ -43,6 +43,9 @@ public final class TestCertificateStrings {
     // stub-idp signing
     public static final String TEST_PUBLIC_CERT = createInlineCertificate(PemCertificateStrings.STUB_IDP_PUBLIC_SIGNING_CERT);
 
+    public static final String EXPIRED_SIGNING_PUBLIC_CERT = createInlineCertificate(PemCertificateStrings.EXPIRED_SIGNING_PUBLIC_CERT);
+
+    public static final String EXPIRED_SIGNING_PRIVATE_KEY = readPrivateKey("expired_signing.pk8");
 
     public static final String HUB_TEST_PRIVATE_ENCRYPTION_KEY = readPrivateKey("hub_encryption_primary.pk8");
 

@@ -115,7 +115,7 @@ public final class TestCertificateStrings {
 
     public static final String STUB_COUNTRY_PUBLIC_SECONDARY_CERT = createInlineCertificate(PemCertificateStrings.STUB_COUNTRY_PUBLIC_SIGNING_SECONDARY_CERT);
 
-    public static final String STUB_COUNTRY_PUBLIC_TERTIARY_PRIVATE_KEY = createInlineCertificate("stub_country_signing_tertiary.pk8");
+    public static final String STUB_COUNTRY_PUBLIC_TERTIARY_PRIVATE_KEY = readPrivateKey("stub_country_signing_tertiary.pk8");
 
     public static final String STUB_COUNTRY_PUBLIC_TERTIARY_CERT = createInlineCertificate(PemCertificateStrings.STUB_COUNTRY_PUBLIC_SIGNING_TERTIARY_CERT);
 

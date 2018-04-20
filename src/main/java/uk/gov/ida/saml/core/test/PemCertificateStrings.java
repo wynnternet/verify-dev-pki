@@ -46,6 +46,8 @@ public abstract class PemCertificateStrings {
 
     public static final String STUB_COUNTRY_PUBLIC_SIGNING_SECONDARY_CERT = readFile("stub_country_signing_secondary.crt");
 
+    public static final String STUB_COUNTRY_PUBLIC_SIGNING_TERTIARY_CERT = readFile("stub_country_signing_tertiary.crt");
+
     public static final String METADATA_SIGNING_A_PUBLIC_CERT = readFile("metadata_signing_a.crt");
 
     public static final String METADATA_SIGNING_B_PUBLIC_CERT = readFile("metadata_signing_b.crt");

@@ -18,6 +18,12 @@
                 ],
                 "expiry": "876000h"
             },
+            "signing_low_date": {
+                "usages": [
+                    "digital signature"
+                ],
+                "expiry": "800000h"
+            },
             "encipherment": {
                 "usages": [
                     "key encipherment"

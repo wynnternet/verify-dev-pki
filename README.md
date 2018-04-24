@@ -1,5 +1,7 @@
 # Verify Dev-PKI
 
+[![Build Status](https://travis-ci.org/alphagov/verify-dev-pki.svg?branch=master)](https://travis-ci.org/alphagov/verify-dev-pki)
+
 This repo contains keys and certificates for use in integration tests.
 
 The certificate chain matches the structure of that on production, but instead

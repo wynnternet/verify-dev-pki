@@ -45,7 +45,10 @@ public final class TestCertificateStrings {
 
     public static final String EXPIRED_SIGNING_PUBLIC_CERT = createInlineCertificate(PemCertificateStrings.EXPIRED_SIGNING_PUBLIC_CERT);
 
+    public static final String EXPIRED_SELF_SIGNED_SIGNING_PUBLIC_CERT = createInlineCertificate(PemCertificateStrings.EXPIRED_SELF_SIGNED_SIGNING_PUBLIC_CERT);
+
     public static final String EXPIRED_SIGNING_PRIVATE_KEY = readPrivateKey("expired_signing.pk8");
+
 
     public static final String HUB_TEST_PRIVATE_ENCRYPTION_KEY = readPrivateKey("hub_encryption_primary.pk8");
 

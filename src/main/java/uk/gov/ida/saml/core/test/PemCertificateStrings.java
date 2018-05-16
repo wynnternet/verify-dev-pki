@@ -9,6 +9,7 @@ import java.nio.charset.Charset;
 
 public abstract class PemCertificateStrings {
 
+
     private static String readFile(String name) {
         try {
             URL resource = Resources.getResource("dev-keys/" + name);
@@ -17,8 +18,10 @@ public abstract class PemCertificateStrings {
             throw Throwables.propagate(e);
         }
     }
-    
+
     public static final String EXPIRED_SIGNING_PUBLIC_CERT = readFile("expired_signing.crt");
+
+    public static final String EXPIRED_SELF_SIGNED_SIGNING_PUBLIC_CERT = readFile("expired_self_signed_signing.crt");
 
     public static final String HUB_TEST_PUBLIC_ENCRYPTION_CERT = readFile("hub_encryption_primary.crt");
 

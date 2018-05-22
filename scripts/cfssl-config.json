@@ -29,6 +29,12 @@
                     "key encipherment"
                 ],
                 "expiry": "876000h"
+            },
+            "signing_expired": {
+                "usages": [
+                    "digital signature"
+                ],
+                "expiry": "-876000h"
             }
         }
     }

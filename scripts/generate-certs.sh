@@ -42,6 +42,8 @@ for file in *.pem; do mv $file $file.test; done
 
 cd $DEV_KEYS_DIR
 
+sed 's/$COMMON_NAME/Expired Test/' $CSR_TEMPLATE | cfssl selfsign -config $CFSSL_CONFIG -profile signing_expired dev.signin.service.gov.uk /dev/stdin | cfssljson -bare expired_self_signed_signing
+
 function createLeaf {
 	name=$1
 	ca=$2
@@ -72,6 +74,7 @@ createLeaf sample_rp_signing_secondary        ida-intermediary-rp-ca signing    
 createLeaf stub_idp_signing_secondary         ida-intermediary-ca    signing            'IDA Stub IDP Signing Dev'
 createLeaf stub_country_signing_secondary     ida-intermediary-ca    signing            'IDA Stub Country Signing Dev'
 createLeaf stub_country_signing_tertiary      ida-intermediary-ca    signing_low_date   'IDA Stub Country Signing Dev'
+createLeaf expired_signing                    idap-core-ca           signing_expired    'Expired Signing Dev'
 
 # Convert all the keys to .pk8 files
 for file in *-key.pem

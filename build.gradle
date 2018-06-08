@@ -1,3 +1,4 @@
+plugins { id "com.jfrog.bintray" version "1.8.0" }
 apply from: 'publish.gradle'
 apply plugin: 'java'
 
@@ -9,3 +10,4 @@ dependencies {
   compile 'com.google.guava:guava:18.0',
           'commons-io:commons-io:2.4'
 }
+

@@ -3,7 +3,17 @@ apply from: 'publish.gradle'
 apply plugin: 'java'
 
 repositories {
-  maven { url 'https://artifactory.ida.digital.cabinet-office.gov.uk/artifactory/whitelisted-repos' }
+  if (System.getenv('VERIFY_USE_PUBLIC_BINARIES') == 'true') {
+    logger.warn('Production builds MUST NOT be built with public binaries.\nUse artifactory/whitelisted-repos for production builds.\n\n')
+    maven {
+      url 'https://build.shibboleth.net/nexus/content/groups/public'
+      url 'https://repo1.maven.org/maven2'
+      jcenter()
+    }
+  }
+  else {
+    maven { url 'https://artifactory.ida.digital.cabinet-office.gov.uk/artifactory/whitelisted-repos' }
+  }
 }
 
 dependencies {

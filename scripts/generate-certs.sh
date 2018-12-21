@@ -53,28 +53,30 @@ function createLeaf {
 	cfssl gencert -config $CFSSL_CONFIG -profile $profile -ca $CA_CERTS_DIR/$ca.pem.test -ca-key $CA_CERTS_DIR/$ca-key.pem.test /dev/stdin |
 	cfssljson -bare $name
 }
-createLeaf metadata_signing_a                 ida-metadata-ca        signing            'IDA Metadata Signing Dev A'
-createLeaf metadata_signing_b                 ida-metadata-ca        signing            'IDA Metadata Signing Dev B'
-createLeaf hub_signing_primary                idap-core-ca           signing            'IDA Hub Signing Dev'
-createLeaf hub_encryption_primary             idap-core-ca           encipherment       'IDA Hub Encryption Dev'
-createLeaf hub_connector_signing_primary      idap-core-ca           signing            'IDA Connector Hub Signing Dev'
-createLeaf hub_connector_encryption_primary   idap-core-ca           encipherment       'IDA Connector Hub Encryption Dev'
-createLeaf sample_rp_encryption_primary       ida-intermediary-rp-ca encipherment       'IDA Sample RP Encryption Dev'
-createLeaf sample_rp_msa_encryption_primary   ida-intermediary-rp-ca encipherment       'IDA Sample RP MSA Encryption Dev'
-createLeaf sample_rp_msa_signing_primary      ida-intermediary-rp-ca signing            'IDA Sample RP MSA Signing Dev'
-createLeaf sample_rp_signing_primary          ida-intermediary-rp-ca signing            'IDA Sample RP Signing Dev'
-createLeaf stub_idp_signing_primary           ida-intermediary-ca    signing            'IDA Stub IDP Signing Dev'
-createLeaf stub_country_signing_primary       ida-intermediary-ca    signing            'IDA Stub Country Signing Dev'
-createLeaf hub_signing_secondary              idap-core-ca           signing            'IDA Hub Signing Dev'
-createLeaf hub_encryption_secondary           idap-core-ca           encipherment       'IDA Hub Encryption Dev'
-createLeaf sample_rp_encryption_secondary     ida-intermediary-rp-ca encipherment       'IDA Sample RP Encryption Dev'
-createLeaf sample_rp_msa_encryption_secondary ida-intermediary-rp-ca encipherment       'IDA Sample RP MSA Encryption Dev'
-createLeaf sample_rp_msa_signing_secondary    ida-intermediary-rp-ca signing            'IDA Sample RP MSA Signing Dev'
-createLeaf sample_rp_signing_secondary        ida-intermediary-rp-ca signing            'IDA Sample RP Signing Dev'
-createLeaf stub_idp_signing_secondary         ida-intermediary-ca    signing            'IDA Stub IDP Signing Dev'
-createLeaf stub_country_signing_secondary     ida-intermediary-ca    signing            'IDA Stub Country Signing Dev'
-createLeaf stub_country_signing_tertiary      ida-intermediary-ca    signing_low_date   'IDA Stub Country Signing Dev'
-createLeaf expired_signing                    idap-core-ca           signing_expired    'Expired Signing Dev'
+createLeaf metadata_signing_a                 		 ida-metadata-ca        signing            			'IDA Metadata Signing Dev A'
+createLeaf metadata_signing_b                 		 ida-metadata-ca        signing            			'IDA Metadata Signing Dev B'
+createLeaf hub_signing_primary                		 idap-core-ca           signing            			'IDA Hub Signing Dev'
+createLeaf hub_encryption_primary             		 idap-core-ca           encipherment       			'IDA Hub Encryption Dev'
+createLeaf hub_connector_signing_primary      		 idap-core-ca           signing            			'IDA Connector Hub Signing Dev'
+createLeaf hub_connector_encryption_primary   		 idap-core-ca           encipherment       			'IDA Connector Hub Encryption Dev'
+createLeaf sample_rp_encryption_primary       		 ida-intermediary-rp-ca encipherment       			'IDA Sample RP Encryption Dev'
+createLeaf sample_rp_msa_encryption_primary   		 ida-intermediary-rp-ca encipherment       			'IDA Sample RP MSA Encryption Dev'
+createLeaf sample_rp_msa_signing_primary      		 ida-intermediary-rp-ca signing            			'IDA Sample RP MSA Signing Dev'
+createLeaf sample_rp_signing_primary          		 ida-intermediary-rp-ca signing            			'IDA Sample RP Signing Dev'
+createLeaf stub_idp_signing_primary           		 ida-intermediary-ca    signing            			'IDA Stub IDP Signing Dev'
+createLeaf stub_country_signing_primary       		 ida-intermediary-ca    signing            			'IDA Stub Country Signing Dev'
+createLeaf hub_signing_secondary              		 idap-core-ca           signing            			'IDA Hub Signing Dev'
+createLeaf hub_encryption_secondary           		 idap-core-ca           encipherment       			'IDA Hub Encryption Dev'
+createLeaf sample_rp_encryption_secondary     		 ida-intermediary-rp-ca encipherment       			'IDA Sample RP Encryption Dev'
+createLeaf sample_rp_msa_encryption_secondary 		 ida-intermediary-rp-ca encipherment       			'IDA Sample RP MSA Encryption Dev'
+createLeaf sample_rp_msa_signing_secondary    		 ida-intermediary-rp-ca signing            			'IDA Sample RP MSA Signing Dev'
+createLeaf sample_rp_signing_secondary        		 ida-intermediary-rp-ca signing            			'IDA Sample RP Signing Dev'
+createLeaf stub_idp_signing_secondary         		 ida-intermediary-ca    signing            			'IDA Stub IDP Signing Dev'
+createLeaf stub_country_signing_secondary     		 ida-intermediary-ca    signing            			'IDA Stub Country Signing Dev'
+createLeaf stub_country_signing_tertiary      		 ida-intermediary-ca    signing_low_date   			'IDA Stub Country Signing Dev'
+createLeaf stub_country_signing_expired       		 ida-intermediary-ca    signing_expired    			'IDA Stub Country Signing Dev'
+createLeaf stub_country_signing_not_yet_valid      ida-intermediary-ca    signing_not_yet_valid   'IDA Stub Country Signing Dev'
+createLeaf expired_signing                    		 idap-core-ca           signing_expired    			'Expired Signing Dev'
 
 # Convert all the keys to .pk8 files
 for file in *-key.pem
@@ -91,4 +93,3 @@ for file in *.pem; do mv $file ${file%.pem}.crt; done
 # Remove the files we no longer need
 cd $CA_CERTS_DIR
 rm *.csr *-key.pem.test
-

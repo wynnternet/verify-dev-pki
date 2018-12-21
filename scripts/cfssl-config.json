@@ -34,7 +34,17 @@
                 "usages": [
                     "digital signature"
                 ],
-                "expiry": "-876000h"
+                "not_before": "2018-10-18T12:00:00+00:00",
+                "not_after": "2018-11-18T12:00:00+00:00",
+                "expiry": "876000h"
+            },
+            "signing_not_yet_valid": {
+                "usages": [
+                    "digital signature"
+                ],
+                "not_before": "2028-10-18T12:00:00+00:00",
+                "not_after": "2028-11-18T12:00:00+00:00",
+                "expiry": "876000h"
             }
         }
     }

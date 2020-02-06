@@ -5,7 +5,7 @@ task sourceJar(type: Jar) {
     from sourceSets.main.allSource
 }
 
-def buildVersion = "1.1.0-${System.getenv('BUILD_NUMBER') ?: 'SNAPSHOT'}"
+def buildVersion = "1.2.0-${System.getenv('BUILD_NUMBER') ?: 'SNAPSHOT'}"
 
 publishing {
     repositories {

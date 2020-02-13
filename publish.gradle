@@ -8,16 +8,6 @@ task sourceJar(type: Jar) {
 def buildVersion = "1.2.0-${System.getenv('BUILD_NUMBER') ?: 'SNAPSHOT'}"
 
 publishing {
-    repositories {
-        maven {
-            credentials {
-                username "${System.env.ARTIUSER}"
-                password "${System.env.ARTIPASSWORD}"
-            }
-            url "https://artifactory.ida.digital.cabinet-office.gov.uk/artifactory/libs-release-local"
-        }
-    }
-
     publications {
         mavenJava(MavenPublication) {
             groupId = "uk.gov.ida"

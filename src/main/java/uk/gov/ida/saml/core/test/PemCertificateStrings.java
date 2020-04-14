@@ -58,4 +58,6 @@ public abstract class PemCertificateStrings {
     public static final String METADATA_SIGNING_A_PUBLIC_CERT = readFile("metadata_signing_a.crt");
 
     public static final String METADATA_SIGNING_B_PUBLIC_CERT = readFile("metadata_signing_b.crt");
+
+    public static final String HUB_TEST_EC_CERT = readFile("hub_ec.crt");
 }

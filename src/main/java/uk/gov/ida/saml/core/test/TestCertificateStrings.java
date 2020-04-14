@@ -32,6 +32,7 @@ public final class TestCertificateStrings {
     }
 
     public static final String TEST_ENTITY_ID = "a-test-entity";
+    public static final String TEST_ENTITY_ID_EC = "a-test-entity-ec";
     public static final Map<String, String> PUBLIC_SIGNING_CERTS;
     public static final Map<String, List<String>> PUBLIC_ENCRYPTION_CERTS;
     public static final Map<String, String> PRIVATE_SIGNING_KEYS;
@@ -40,8 +41,12 @@ public final class TestCertificateStrings {
     // stub-idp signing
     public static final String TEST_PRIVATE_KEY = readPrivateKey("stub_idp_signing_primary.pk8");
 
+    public static final String TEST_PRIVATE_EC_KEY = readPrivateKey("hub_ec.pk8");
+
     // stub-idp signing
     public static final String TEST_PUBLIC_CERT = createInlineCertificate(PemCertificateStrings.STUB_IDP_PUBLIC_SIGNING_CERT);
+
+    public static final String TEST_PUBLIC_EC_CERT = createInlineCertificate(PemCertificateStrings.HUB_TEST_EC_CERT);
 
     public static final String EXPIRED_SIGNING_PUBLIC_CERT = createInlineCertificate(PemCertificateStrings.EXPIRED_SIGNING_PUBLIC_CERT);
 
@@ -160,6 +165,7 @@ public final class TestCertificateStrings {
     static {
         PUBLIC_SIGNING_CERTS = ImmutableMap.<String, String>builder()
             .put(TEST_ENTITY_ID, TEST_PUBLIC_CERT)
+            .put(TEST_ENTITY_ID_EC, TEST_PUBLIC_EC_CERT)
             .put(TestEntityIds.HUB_ENTITY_ID, HUB_TEST_PUBLIC_SIGNING_CERT)
             .put(TestEntityIds.HUB_SECONDARY_ENTITY_ID, HUB_TEST_SECONDARY_PUBLIC_SIGNING_CERT)
             .put(TestEntityIds.HUB_CONNECTOR_ENTITY_ID, HUB_CONNECTOR_TEST_PUBLIC_SIGNING_CERT)
@@ -179,6 +185,7 @@ public final class TestCertificateStrings {
     static {
         PRIVATE_SIGNING_KEYS = ImmutableMap.<String, String>builder()
             .put(TEST_ENTITY_ID, TEST_PRIVATE_KEY)
+            .put(TEST_ENTITY_ID_EC, TEST_PRIVATE_EC_KEY)
             .put(TestEntityIds.HUB_ENTITY_ID, HUB_TEST_PRIVATE_SIGNING_KEY)
             .put(TestEntityIds.HUB_SECONDARY_ENTITY_ID, HUB_TEST_PRIVATE_SECONDARY_SIGNING_KEY)
             .put(TestEntityIds.HUB_CONNECTOR_ENTITY_ID, HUB_CONNECTOR_TEST_PRIVATE_SIGNING_KEY)
@@ -198,6 +205,7 @@ public final class TestCertificateStrings {
     static {
         PUBLIC_ENCRYPTION_CERTS = ImmutableMap.<String, List<String>>builder()
             .put(TEST_ENTITY_ID, ImmutableList.of(TEST_PUBLIC_CERT))
+            .put(TEST_ENTITY_ID_EC, ImmutableList.of(TEST_PUBLIC_EC_CERT))
             .put(TestEntityIds.HUB_ENTITY_ID, ImmutableList.of(HUB_TEST_PUBLIC_ENCRYPTION_CERT, TEST_PUBLIC_CERT))
             .put(TestEntityIds.HUB_CONNECTOR_ENTITY_ID, ImmutableList.of(HUB_CONNECTOR_TEST_PUBLIC_ENCRYPTION_CERT))
             .put(TestEntityIds.TEST_RP, ImmutableList.of(TEST_RP_PUBLIC_ENCRYPTION_CERT))
@@ -210,6 +218,7 @@ public final class TestCertificateStrings {
     static {
         PRIVATE_ENCRYPTION_KEYS = ImmutableMap.<String, List<String>>builder()
             .put(TEST_ENTITY_ID, ImmutableList.of(TEST_PRIVATE_KEY))
+            .put(TEST_ENTITY_ID_EC, ImmutableList.of(TEST_PRIVATE_EC_KEY))
             .put(TestEntityIds.HUB_ENTITY_ID, ImmutableList.of(HUB_TEST_PRIVATE_ENCRYPTION_KEY, TEST_PRIVATE_KEY))
             .put(TestEntityIds.HUB_SECONDARY_ENTITY_ID, ImmutableList.of(HUB_TEST_PRIVATE_ENCRYPTION_KEY, TEST_PRIVATE_KEY))
             .put(TestEntityIds.HUB_CONNECTOR_ENTITY_ID, ImmutableList.of(HUB_CONNECTOR_TEST_PRIVATE_ENCRYPTION_KEY))

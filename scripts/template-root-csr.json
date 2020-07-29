@@ -1,0 +1,20 @@
+{
+    "CA": {
+        "expiry": "876000h",
+        "pathlen": 0
+    },
+    "CN": "$COMMON_NAME",
+    "key": {
+        "algo": "rsa",
+        "size": 4096
+    },
+    "names": [
+        {
+            "C": "GB",
+            "ST": "London",
+            "L": "London",
+            "O": "Cabinet Office",
+            "OU": "GDS"
+        }
+    ]
+}

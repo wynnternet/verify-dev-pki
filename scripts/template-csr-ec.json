@@ -1,0 +1,16 @@
+{
+    "CN": "$COMMON_NAME",
+    "key": {
+        "algo": "ecdsa",
+        "size": 384
+    },
+    "names": [
+        {
+            "C": "GB",
+            "ST": "London",
+            "L": "London",
+            "O": "Cabinet Office",
+            "OU": "GDS"
+        }
+    ]
+}

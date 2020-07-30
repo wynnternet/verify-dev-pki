@@ -10,7 +10,11 @@
                     "crl sign"
                 ],
                 "expiry": "876000h",
-                "is_ca": true
+                "ca_constraint": {
+                    "is_ca": true,
+                    "max_path_len": 0,
+                    "max_path_len_zero": true
+                }
             },
             "signing": {
                 "usages": [
@@ -42,8 +46,8 @@
                 "usages": [
                     "digital signature"
                 ],
-                "not_before": "2028-10-18T12:00:00+00:00",
-                "not_after": "2028-11-18T12:00:00+00:00",
+                "not_before": "2128-10-18T12:00:00+00:00",
+                "not_after": "2128-11-18T12:00:00+00:00",
                 "expiry": "876000h"
             }
         }

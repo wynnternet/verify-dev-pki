@@ -4,11 +4,11 @@ apply plugin: 'java-library'
 
 repositories {
   if (System.getenv('VERIFY_USE_PUBLIC_BINARIES') == 'true') {
-    logger.warn('Production builds MUST NOT be built with public binaries.\nUse artifactory/whitelisted-repos for production builds.\n\n')
+    logger.warn('Production builds MUST NOT be built with public binaries.\nUse artifactory/allowed-repos for production builds.\n\n')
     jcenter()
   }
   else {
-    maven { url 'https://gds.jfrog.io/artifactory/whitelisted-repos' }
+    maven { url 'https://gds.jfrog.io/artifactory/allowed-repos' }
   }
 }
 

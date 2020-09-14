@@ -1,12 +1,9 @@
 package certificates.values;
 
 import com.google.common.base.Throwables;
-import com.google.common.io.Resources;
 import org.apache.commons.io.IOUtils;
 
 import java.io.IOException;
-import java.net.URL;
-import java.util.Base64;
 
 public class CACertificates {
     private static String readCertificateFile(String name) {
@@ -26,4 +23,22 @@ public class CACertificates {
     public static final String TEST_RP_CA = readCertificateFile("ida-intermediary-rp-ca.pem.test");
 
     public static final String TEST_CORE_CA = readCertificateFile("idap-core-ca.pem.test");
+
+    // New generation of CAs
+
+    public static final String TEST_VERIFY_ROOT_CA = readCertificateFile("verify-root-ca.pem.test");
+
+    public static final String TEST_VERIFY_ROOT_CA_EC = readCertificateFile("verify-root-ca-ec.pem.test");
+
+    public static final String TEST_VERIFY_METADATA_CA = readCertificateFile("verify-metadata-ca.pem.test");
+
+    public static final String TEST_VERIFY_METADATA_CA_EC = readCertificateFile("verify-metadata-ca-ec.pem.test");
+
+    public static final String TEST_VERIFY_IDP_CA = readCertificateFile("verify-intermediary-ca.pem.test");
+
+    public static final String TEST_VERIFY_RP_CA = readCertificateFile("verify-intermediary-rp-ca.pem.test");
+
+    public static final String TEST_VERIFY_CORE_CA = readCertificateFile("verify-core-ca.pem.test");
+
+    public static final String TEST_VERIFY_CORE_CA_EC = readCertificateFile("verify-core-ca-ec.pem.test");
 }

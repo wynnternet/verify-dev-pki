@@ -11,7 +11,7 @@ task sourceJar(type: Jar) {
 def buildVersion = "2.0.0-${System.env.BUILD_NUMBER ?: 'SNAPSHOT'}"
 group = "uk.gov.ida"
 version = "$buildVersion"
-archivesBaseName = "verify-dev-pki"
+archivesBaseName = "ida-dev-pki"
 
 publishing {
     publications {
@@ -22,7 +22,7 @@ publishing {
                 packaging = 'jar'
                 description = 'This repo contains keys and certificates for use in integration tests'
                 url = 'https://github.com/alphagov/verify-dev-pki'
-                artifactId = 'verify-dev-pki'
+                artifactId = 'ida-dev-pki'
 
                 scm {
                     url = 'https://github.com/alphagov/verify-dev-pki'

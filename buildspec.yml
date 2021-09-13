@@ -68,7 +68,7 @@ phases:
 #    finally:
 #      - command
 #      - command
-  post_build:
+#  post_build:
 #    run-as: Linux-user-name
 #    on-failure: ABORT | CONTINUE
 #    commands:

@@ -17,6 +17,7 @@ env:
     SONATYPE_PASSWORD: "sonatype-password:password"
     MAVEN_CENTRAL_SIGNING_KEY: "maven-central-signing-key:key"
     MAVEN_CENTRAL_SIGNING_KEY_PASSWORD: "maven-central-signing-key:passphrase"
+    MULTILINE_THING: "maven-central-signing-key:thing"
 #    key: secret-id:json-key:version-stage:version-id
   git-credential-helper: no
 
@@ -48,6 +49,7 @@ phases:
 #    on-failure: ABORT | CONTINUE
     commands:
       - aws s3 cp s3://wynne-codepipeline-spike/verify-dev-pki-version.txt ./verify-dev-pki-version.txt
+      - echo "$MULTILINE_THING"
 #      - ls -al
 #      - pwd
 #      - git rev-parse --show-toplevel

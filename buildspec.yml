@@ -57,6 +57,8 @@ phases:
       - echo "$TEST_KEY_2"
       - echo "$TEST_KEY_3"
       - echo "$MULTILINE_THING"
+      - thingy=$MULTILINE_THING
+      - echo $thingy
 #      - ls -al
 #      - pwd
 #      - git rev-parse --show-toplevel

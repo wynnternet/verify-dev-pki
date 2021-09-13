@@ -15,7 +15,7 @@ env:
 #    - variable
 #  secrets-manager:
 #    key: secret-id:json-key:version-stage:version-id
-  git-credential-helper: no
+  git-credential-helper: yes
 
 #proxy:
 #  upload-artifacts: no | yes

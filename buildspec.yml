@@ -47,6 +47,9 @@ phases:
       - aws s3 cp s3://wynne-codepipeline-spike/verify-dev-pki-version.txt ./verify-dev-pki-version.txt
       - ls -al
       - pwd
+      - git log
+      - git status
+      - git rev-parse --show-toplevel
       - cat .git/committer > ./last-committer
 #      - command
 #    finally:

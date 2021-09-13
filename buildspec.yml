@@ -45,10 +45,10 @@ phases:
 #    on-failure: ABORT | CONTINUE
     commands:
       - aws s3 cp s3://wynne-codepipeline-spike/verify-dev-pki-version.txt ./verify-dev-pki-version.txt
-      - ls -al
-      - pwd
-      - git rev-parse --show-toplevel
-      - cat .git/committer > ./last-committer
+#      - ls -al
+#      - pwd
+#      - git rev-parse --show-toplevel
+#      - cat .git/committer > ./last-committer
 #      - command
 #    finally:
 #      - command
@@ -57,8 +57,7 @@ phases:
 #    run-as: Linux-user-name
 #    on-failure: ABORT | CONTINUE
     commands:
-      - cd verify-dev-pki
-      - BUILD_NUMBER=$(cat ../verify-dev-pki-version.txt) ./gradlew clean build publishToSonatype # closeAndReleaseSonatypeStagingRepository
+      - BUILD_NUMBER=$(cat verify-dev-pki-version.txt) ./gradlew clean build publishToSonatype # closeAndReleaseSonatypeStagingRepository
 #    finally:
 #      - command
 #      - command
@@ -67,12 +66,12 @@ phases:
 #    on-failure: ABORT | CONTINUE
     commands:
       - echo $(( $(cat verify-dev-pki-version.txt) + 1)) > verify-dev-pki-version.txt
-      - aws s3 cp ./verify-dev-pki-version.txt s3://wynne-codepipeline-spike/verify-dev-pki-version.txt
+      - aws s3 cp verify-dev-pki-version.txt s3://wynne-codepipeline-spike/verify-dev-pki-version.txt
       - git tag "build_$(cat verify-dev-pki-version.txt)"
       - git push origin "build_$(cat verify-dev-pki-version.txt)"
-    finally:
-      - command
-      - command
+#    finally:
+#      - command
+#      - command
 #reports:
 #  report-group-name-or-arn:
 #    files:

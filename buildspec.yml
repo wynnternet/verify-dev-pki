@@ -18,9 +18,6 @@ env:
     MAVEN_CENTRAL_SIGNING_KEY: "maven-central-signing-key:key"
     MAVEN_CENTRAL_SIGNING_KEY_PASSWORD: "maven-central-signing-key:passphrase"
     MULTILINE_THING: "maven-central-signing-key:thing"
-    TEST_KEY_1: "test-secret:key1"
-    TEST_KEY_2: "test-secret:key2"
-    TEST_KEY_3: "test-secret:key3"
 
 #    key: secret-id:json-key:version-stage:version-id
   git-credential-helper: no
@@ -53,12 +50,6 @@ phases:
 #    on-failure: ABORT | CONTINUE
     commands:
       - aws s3 cp s3://wynne-codepipeline-spike/verify-dev-pki-version.txt ./verify-dev-pki-version.txt
-      - echo "$TEST_KEY_1"
-      - echo "$TEST_KEY_2"
-      - echo "$TEST_KEY_3"
-      - echo "$MULTILINE_THING"
-      - thingy=$MULTILINE_THING
-      - echo $thingy
 #      - ls -al
 #      - pwd
 #      - git rev-parse --show-toplevel
@@ -71,7 +62,7 @@ phases:
 #    run-as: Linux-user-name
 #    on-failure: ABORT | CONTINUE
     commands:
-      - BUILD_NUMBER=$(cat verify-dev-pki-version.txt) ./gradlew clean build publishToSonatype # closeAndReleaseSonatypeStagingRepository
+      - BUILD_NUMBER=$(cat verify-dev-pki-version.txt) ./gradlew clean build publishToSonatype --stacktrace # closeAndReleaseSonatypeStagingRepository
       - echo $(( $(cat verify-dev-pki-version.txt) + 1)) > verify-dev-pki-version.txt
       - aws s3 cp verify-dev-pki-version.txt s3://wynne-codepipeline-spike/verify-dev-pki-version.txt
       - git tag "build_$(cat verify-dev-pki-version.txt)"

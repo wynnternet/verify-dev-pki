@@ -15,7 +15,7 @@ env:
 #    - variable
 #  secrets-manager:
 #    key: secret-id:json-key:version-stage:version-id
-  git-credential-helper: yes
+  git-credential-helper: no
 
 #proxy:
 #  upload-artifacts: no | yes
@@ -47,8 +47,6 @@ phases:
       - aws s3 cp s3://wynne-codepipeline-spike/verify-dev-pki-version.txt ./verify-dev-pki-version.txt
       - ls -al
       - pwd
-      - git log
-      - git status
       - git rev-parse --show-toplevel
       - cat .git/committer > ./last-committer
 #      - command

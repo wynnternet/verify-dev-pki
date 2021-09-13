@@ -4,8 +4,8 @@ version: 0.2
 
 env:
 #  shell: shell-tag
-#  variables:
-#    key: "value"
+  variables:
+    SONATYPE_USERNAME: "ida-operations"
 #    key: "value"
 #  parameter-store:
 #    key: "value"
@@ -13,7 +13,10 @@ env:
 #  exported-variables:
 #    - variable
 #    - variable
-#  secrets-manager:
+  secrets-manager:
+    SONATYPE_PASSWORD: "sonatype-password:password"
+    MAVEN_CENTRAL_SIGNING_KEY: "maven-central-signing-key:key"
+    MAVEN_CENTRAL_SIGNING_KEY_PASSWORD: "maven-central-signing-key:passphrase"
 #    key: secret-id:json-key:version-stage:version-id
   git-credential-helper: no
 
@@ -58,17 +61,19 @@ phases:
 #    on-failure: ABORT | CONTINUE
     commands:
       - BUILD_NUMBER=$(cat verify-dev-pki-version.txt) ./gradlew clean build publishToSonatype # closeAndReleaseSonatypeStagingRepository
+      - echo $(( $(cat verify-dev-pki-version.txt) + 1)) > verify-dev-pki-version.txt
+      - aws s3 cp verify-dev-pki-version.txt s3://wynne-codepipeline-spike/verify-dev-pki-version.txt
+      - git tag "build_$(cat verify-dev-pki-version.txt)"
+      - git push origin "build_$(cat verify-dev-pki-version.txt)"
 #    finally:
 #      - command
 #      - command
   post_build:
 #    run-as: Linux-user-name
 #    on-failure: ABORT | CONTINUE
-    commands:
-      - echo $(( $(cat verify-dev-pki-version.txt) + 1)) > verify-dev-pki-version.txt
-      - aws s3 cp verify-dev-pki-version.txt s3://wynne-codepipeline-spike/verify-dev-pki-version.txt
-      - git tag "build_$(cat verify-dev-pki-version.txt)"
-      - git push origin "build_$(cat verify-dev-pki-version.txt)"
+#    commands:
+#      - command
+#      - command
 #    finally:
 #      - command
 #      - command

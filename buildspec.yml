@@ -19,7 +19,7 @@ env:
     MAVEN_CENTRAL_SIGNING_KEY_PASSWORD: "maven-central-signing:password"
 
 #    key: secret-id:json-key:version-stage:version-id
-  git-credential-helper: no
+  git-credential-helper: yes
 
 #proxy:
 #  upload-artifacts: no | yes

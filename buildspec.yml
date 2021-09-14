@@ -49,7 +49,9 @@ phases:
 #    on-failure: ABORT | CONTINUE
     commands:
       - aws s3 cp s3://wynne-codepipeline-spike/verify-dev-pki-version.txt ./verify-dev-pki-version.txt
-      - export MAVEN_CENTRAL_SIGNING_KEY=$(echo $MAVEN_CENTRAL_SIGNING_BASE64_KEY | base64 -d)
+      - echo $SHELL
+      - MAVEN_CENTRAL_SIGNING_KEY=$(echo $MAVEN_CENTRAL_SIGNING_BASE64_KEY | base64 -d)
+      - export MAVEN_CENTRAL_SIGNING_KEY
 #      - ls -al
 #      - pwd
 #      - git rev-parse --show-toplevel
@@ -62,8 +64,6 @@ phases:
 #    run-as: Linux-user-name
 #    on-failure: ABORT | CONTINUE
     commands:
-      - thing=$(echo $MAVEN_CENTRAL_SIGNING_KEY | base64)
-      - echo $thing
       - BUILD_NUMBER=$(cat verify-dev-pki-version.txt) ./gradlew clean build publishToSonatype --stacktrace # closeAndReleaseSonatypeStagingRepository
       - echo $(( $(cat verify-dev-pki-version.txt) + 1)) > verify-dev-pki-version.txt
       - aws s3 cp verify-dev-pki-version.txt s3://wynne-codepipeline-spike/verify-dev-pki-version.txt

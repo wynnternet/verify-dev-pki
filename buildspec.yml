@@ -15,9 +15,8 @@ env:
 #    - variable
   secrets-manager:
     SONATYPE_PASSWORD: "sonatype-password:password"
-    MAVEN_CENTRAL_SIGNING_KEY: "maven-central-signing-key:key"
-    MAVEN_CENTRAL_SIGNING_KEY_PASSWORD: "maven-central-signing-key:passphrase"
-    MULTILINE_THING: "maven-central-signing-key:thing"
+    MAVEN_CENTRAL_SIGNING_KEY: "maven-central-signing-key"
+    MAVEN_CENTRAL_SIGNING_KEY_PASSWORD: "maven-central-signing-key-password"
 
 #    key: secret-id:json-key:version-stage:version-id
   git-credential-helper: no

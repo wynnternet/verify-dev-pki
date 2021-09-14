@@ -7,16 +7,16 @@ env:
   variables:
     SONATYPE_USERNAME: "ida-operations"
 #    key: "value"
-  parameter-store:
-    MAVEN_CENTRAL_SIGNING_KEY: "wynne-codepipeline-spike-maven-central-signing-key"
+#  parameter-store:
+#    MAVEN_CENTRAL_SIGNING_KEY: "wynne-codepipeline-spike-maven-central-signing-key"
 #    key: "value"
 #  exported-variables:
 #    - variable
 #    - variable
   secrets-manager:
     SONATYPE_PASSWORD: "sonatype-password:password"
-#    MAVEN_CENTRAL_SIGNING_KEY: "maven-central-signing-key"
-    MAVEN_CENTRAL_SIGNING_KEY_PASSWORD: "maven-central-signing-key-password"
+    MAVEN_CENTRAL_SIGNING_BASE64_KEY: "maven-central-signing:base64_key"
+    MAVEN_CENTRAL_SIGNING_KEY_PASSWORD: "maven-central-signing:password"
 
 #    key: secret-id:json-key:version-stage:version-id
   git-credential-helper: no
@@ -49,6 +49,7 @@ phases:
 #    on-failure: ABORT | CONTINUE
     commands:
       - aws s3 cp s3://wynne-codepipeline-spike/verify-dev-pki-version.txt ./verify-dev-pki-version.txt
+      - export MAVEN_CENTRAL_SIGNING_KEY=$(echo $MAVEN_CENTRAL_SIGNING_BASE64_KEY | base64 -d)
 #      - ls -al
 #      - pwd
 #      - git rev-parse --show-toplevel

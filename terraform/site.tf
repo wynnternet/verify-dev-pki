@@ -32,12 +32,12 @@ resource "aws_codepipeline" "codepipeline" {
     name = "Source-stage"
 
     action {
-      name = "Source-action"
+      name = "Source-dev-pki"
       category = "Source"
       owner = "AWS"
       provider = "CodeStarSourceConnection"
       version = "1"
-      output_artifacts = ["source_output"]
+      output_artifacts = ["verify_dev_pki"]
 
       configuration = {
         ConnectionArn = aws_codestarconnections_connection.wynnternet.arn
@@ -46,7 +46,24 @@ resource "aws_codepipeline" "codepipeline" {
         OutputArtifactFormat = "CODEBUILD_CLONE_REF"
       }
     }
+
+    action {
+      name = "Source-visual-regression"
+      category = "Source"
+      owner = "AWS"
+      provider = "CodeStarSourceConnection"
+      version = "1"
+      output_artifacts = ["visual_regression_tests"]
+
+      configuration = {
+        ConnectionArn = aws_codestarconnections_connection.wynnternet.arn
+        FullRepositoryId = "wynnternet/verify-visual-regression-tests"
+        BranchName = "main"
+        OutputArtifactFormat = "CODEBUILD_CLONE_REF"
+      }
+    }
   }
+
 
   stage {
     name = "Build-stage"
@@ -56,12 +73,13 @@ resource "aws_codepipeline" "codepipeline" {
       category = "Build"
       owner = "AWS"
       provider = "CodeBuild"
-      input_artifacts = ["source_output"]
+      input_artifacts = ["verify_dev_pki", "visual_regression_tests"]
       output_artifacts = ["build_output"]
       version = "1"
 
       configuration = {
         ProjectName = "wynne-terraform-test"
+        PrimarySource = "verify_dev_pki"
       }
     }
   }

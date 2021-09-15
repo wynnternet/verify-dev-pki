@@ -48,8 +48,9 @@ phases:
 #    run-as: Linux-user-name
 #    on-failure: ABORT | CONTINUE
     commands:
+      - ls -al
+      - ls -al ../
       - aws s3 cp s3://wynne-codepipeline-spike/verify-dev-pki-version.txt ./verify-dev-pki-version.txt
-      - echo $SHELL
       - MAVEN_CENTRAL_SIGNING_KEY=$(echo $MAVEN_CENTRAL_SIGNING_BASE64_KEY | base64 -d)
       - export MAVEN_CENTRAL_SIGNING_KEY
 #      - ls -al

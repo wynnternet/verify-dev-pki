@@ -107,6 +107,7 @@ resource "aws_codebuild_project" "wynne_terraform_test" {
       credential = "wynne-codebuild-spike-2"
       credential_provider = "SECRETS_MANAGER"
     }
+    privileged_mode = true
   }
 }
 

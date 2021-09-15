@@ -40,6 +40,8 @@ phases:
 #      runtime: version
     commands:
       - apt-get update && apt-get install -y awscli
+      - curl -fsSL https://get.docker.com -o get-docker.sh
+      - sh get-docker.sh
 #      - command
 #    finally:
 #      - command
@@ -70,6 +72,8 @@ phases:
       - aws s3 cp verify-dev-pki-version.txt s3://wynne-codepipeline-spike/verify-dev-pki-version.txt
       - git tag "build_$(cat verify-dev-pki-version.txt)"
       - git push origin "build_$(cat verify-dev-pki-version.txt)"
+      - cd ../verify-visual-regression-tests
+      - docker build -t verify-visual-regressions-tests .
 #    finally:
 #      - command
 #      - command

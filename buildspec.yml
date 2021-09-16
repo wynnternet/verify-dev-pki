@@ -75,7 +75,7 @@ phases:
 #    run-as: Linux-user-name
 #    on-failure: ABORT | CONTINUE
     commands:
-      - BUILD_NUMBER=$(cat verify-dev-pki-version.txt) ./gradlew clean build publishToSonatype --stacktrace # closeAndReleaseSonatypeStagingRepository
+#      - BUILD_NUMBER=$(cat verify-dev-pki-version.txt) ./gradlew clean build publishToSonatype --stacktrace # closeAndReleaseSonatypeStagingRepository
       - echo $(( $(cat verify-dev-pki-version.txt) + 1)) > verify-dev-pki-version.txt
       - aws s3 cp verify-dev-pki-version.txt s3://wynne-codepipeline-spike/verify-dev-pki-version.txt
       - git tag "build_$(cat verify-dev-pki-version.txt)"

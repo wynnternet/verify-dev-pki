@@ -40,7 +40,10 @@ phases:
 #      runtime: version
     commands:
       - apt-get update
-      - apt-get install -y awscli apt-transport-https ca-certificates curl gnupg lsb-release
+      - apt-get install -y apt-transport-https ca-certificates curl gnupg lsb-release
+      - curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip"
+      - unzip awscliv2.zip
+      - ./aws/install
       - aws --version
       - curl -fsSL https://download.docker.com/linux/debian/gpg | gpg --dearmor -o /usr/share/keyrings/docker-archive-keyring.gpg
       - echo "deb [arch=amd64 signed-by=/usr/share/keyrings/docker-archive-keyring.gpg] https://download.docker.com/linux/debian $(lsb_release -cs) stable" | tee /etc/apt/sources.list.d/docker.list > /dev/null
@@ -88,8 +91,7 @@ phases:
 #    on-failure: ABORT | CONTINUE
     commands:
       - docker tag wynne-codepipeline-spike:latest public.ecr.aws/f1g2b6b7/wynne-codepipeline-spike:latest
-      - aws ecr get-login --region eu-west-2
-      - aws ecr get-login --region eu-west-2 | docker login --username AWS --password-stdin public.ecr.aws/f1g2b6b7
+      - aws ecr-public get-login-password --region eu-west-2 | docker login --username AWS --password-stdin public.ecr.aws/f1g2b6b7
       - docker push public.ecr.aws/f1g2b6b7/wynne-codepipeline-spike:latest
 #    finally:
 #      - command

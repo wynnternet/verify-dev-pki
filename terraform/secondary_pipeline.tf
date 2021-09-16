@@ -22,7 +22,7 @@ resource "aws_codepipeline" "pipeline_triggered_by_image_push" {
         ConnectionArn = aws_codestarconnections_connection.wynnternet.arn
         FullRepositoryId = "wynnternet/verify-dev-pki"
         BranchName = "hub-1051-codepipeline-spike"
-        OutputArtifactFormat = "CODEBUILD_CLONE_REF"
+        OutputArtifactFormat = "CODE_ZIP"
       }
     }
 
@@ -68,6 +68,7 @@ resource "aws_codebuild_project" "wynne_ecr_triggered_pipeline_build" {
 
   source {
     type = "CODEPIPELINE"
+    buildspec = "ecr-triggered-pipeline.yml"
   }
 
   artifacts {
@@ -79,7 +80,5 @@ resource "aws_codebuild_project" "wynne_ecr_triggered_pipeline_build" {
     type = "LINUX_CONTAINER"
     image = "626298535712.dkr.ecr.eu-west-2.amazonaws.com/wynne-codepipeline-spike:latest"
     image_pull_credentials_type = "CODEBUILD"
-
-    privileged_mode = true
   }
 }

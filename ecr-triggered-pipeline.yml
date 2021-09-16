@@ -1,0 +1,112 @@
+version: 0.2
+
+#run-as: Linux-user-name
+
+#env:
+#  #  shell: shell-tag
+##  variables:
+##    SONATYPE_USERNAME: "ida-operations"
+#  #    key: "value"
+#  #  parameter-store:
+#  #    MAVEN_CENTRAL_SIGNING_KEY: "wynne-codepipeline-spike-maven-central-signing-key"
+#  #    key: "value"
+#  #  exported-variables:
+#  #    - variable
+#  #    - variable
+##  secrets-manager:
+##    SONATYPE_PASSWORD: "sonatype-password:password"
+##    MAVEN_CENTRAL_SIGNING_BASE64_KEY: "maven-central-signing:base64_key"
+##    MAVEN_CENTRAL_SIGNING_KEY_PASSWORD: "maven-central-signing:password"
+#
+#  #    key: secret-id:json-key:version-stage:version-id
+#  git-credential-helper: yes
+
+#proxy:
+#  upload-artifacts: no | yes
+#  logs: no | yes
+
+#batch:
+#  fast-fail: false | true
+#    # build-list:
+#    # build-matrix:
+#    # build-graph:
+
+#phases:
+#  install:
+    #    run-as: Linux-user-name
+    #    on-failure: ABORT | CONTINUE
+    #    runtime-versions:
+    #      runtime: version
+    #      runtime: version
+#    commands:
+  #      - command
+  #    finally:
+  #      - command
+  #      - command
+  pre_build:
+    #    run-as: Linux-user-name
+    #    on-failure: ABORT | CONTINUE
+    commands:
+      - ls -al
+      - ls -al ../
+  #      - ls -al
+  #      - pwd
+  #      - git rev-parse --show-toplevel
+  #      - cat .git/committer > ./last-committer
+  #      - command
+  #    finally:
+  #      - command
+  #      - command
+#  build:
+    #    run-as: Linux-user-name
+    #    on-failure: ABORT | CONTINUE
+#    commands:
+#      - command
+
+  #    finally:
+  #      - command
+  #      - command
+#  post_build:
+    #    run-as: Linux-user-name
+    #    on-failure: ABORT | CONTINUE
+#    commands:
+#      - command
+#    finally:
+#      - command
+#      - command
+#reports:
+#  report-group-name-or-arn:
+#    files:
+#      - location
+#      - location
+#    base-directory: location
+#    discard-paths: no | yes
+#    file-format: report-format
+#artifacts:
+#  files:
+#    - location
+#    - location
+#  name: artifact-name
+#  discard-paths: no | yes
+#  base-directory: location
+#  exclude-paths: excluded paths
+#  enable-symlinks: no | yes
+#  s3-prefix: prefix
+#  secondary-artifacts:
+#    artifactIdentifier:
+#      files:
+#        - location
+#        - location
+#      name: secondary-artifact-name
+#      discard-paths: no | yes
+#      base-directory: location
+#    artifactIdentifier:
+#      files:
+#        - location
+#        - location
+#      discard-paths: no | yes
+#      base-directory: location
+#cache:
+#  paths:
+#    - path
+#    - path

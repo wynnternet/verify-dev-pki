@@ -47,8 +47,13 @@ phases:
     #    run-as: Linux-user-name
     #    on-failure: ABORT | CONTINUE
     commands:
+      - pwd
       - ls -al
-      - ls -al ../
+      - cd ..
+      - pwd
+      - ls -al
+      - ls -al ./00
+      - ls -al ./01
   #      - ls -al
   #      - pwd
   #      - git rev-parse --show-toplevel

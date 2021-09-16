@@ -90,9 +90,9 @@ phases:
 #    run-as: Linux-user-name
 #    on-failure: ABORT | CONTINUE
     commands:
-      - docker tag wynne-codepipeline-spike:latest public.ecr.aws/f1g2b6b7/wynne-codepipeline-spike:latest
-      - docker login -u AWS -p $(aws ecr-public get-login-password --region eu-west-2) public.ecr.aws/f1g2b6b7
-      - docker push public.ecr.aws/f1g2b6b7/wynne-codepipeline-spike:latest
+      - docker tag wynne-codepipeline-spike:latest 626298535712.dkr.ecr.eu-west-2.amazonaws.com/wynne-codepipeline-spike:latest
+      - aws ecr get-login-password --region eu-west-2 | docker login --username AWS --password-stdin 626298535712.dkr.ecr.eu-west-2.amazonaws.com
+      - docker push 626298535712.dkr.ecr.eu-west-2.amazonaws.com/wynne-codepipeline-spike:latest
 #    finally:
 #      - command
 #      - command

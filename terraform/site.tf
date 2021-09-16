@@ -264,6 +264,13 @@ resource "aws_iam_role_policy" "codepipeline_policy" {
         "codebuild:StartBuild"
       ],
       "Resource": "*"
+    },
+    {
+      "Effect": "Allow",
+      "Action": [
+        "ecr:DescribeImages"
+      ],
+      "Resource": "arn:aws:ecr:eu-west-2:626298535712:repository/wynne-codepipeline-spike"
     }
   ]
 }

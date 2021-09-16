@@ -82,3 +82,38 @@ resource "aws_codebuild_project" "wynne_ecr_triggered_pipeline_build" {
     image_pull_credentials_type = "CODEBUILD"
   }
 }
+
+resource "aws_cloudwatch_event_rule" "trigger_pipeline_on_ecr_push" {
+  name = "image-pushed"
+  role_arn = aws_iam_role.wynne_codebuild_terraform_role.arn
+  event_pattern = <<EOF
+{
+  "detail-type": [
+    "ECR Image Action"
+  ],
+  "source": [
+    "aws.ecr"
+  ],
+  "detail": {
+    "action-type": [
+      "PUSH"
+    ],
+    "image-tag": [
+      "latest"
+    ],
+    "repository-name": [
+      "wynne-codepipeline-spike"
+    ],
+    "result": [
+      "SUCCESS"
+    ]
+  }
+}
+EOF
+}
+
+resource "aws_cloudwatch_event_target" "pipeline_triggered_by_image_push" {
+  rule = aws_cloudwatch_event_rule.trigger_pipeline_on_ecr_push.name
+  arn = aws_codepipeline.pipeline_triggered_by_image_push.arn
+  role_arn = aws_iam_role.wynne_codebuild_terraform_role.arn
+}

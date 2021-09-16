@@ -131,7 +131,10 @@ resource "aws_iam_role" "wynne_codebuild_terraform_role" {
     {
       "Effect": "Allow",
       "Principal": {
-        "Service": "codebuild.amazonaws.com"
+        "Service": [
+          "codebuild.amazonaws.com",
+          "events.amazonaws.com"
+        ]
       },
       "Action": "sts:AssumeRole"
     }
@@ -202,6 +205,13 @@ resource "aws_iam_role_policy" "wynne_codebuild_policy" {
               "ecr:UploadLayerPart"
             ],
             "Resource": "*",
+            "Effect": "Allow"
+        },
+        {
+            "Action": [
+              "codepipeline:StartPipelineExecution"
+            ],
+            "Resource": "${aws_codepipeline.pipeline_triggered_by_image_push.arn}",
             "Effect": "Allow"
         }
     ]

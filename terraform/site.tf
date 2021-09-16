@@ -101,7 +101,7 @@ resource "aws_codebuild_project" "wynne_terraform_test" {
   environment {
     compute_type = "BUILD_GENERAL1_SMALL"
     type = "LINUX_CONTAINER"
-    image = "openjdk@sha256:058e2dae50d1f4c35586235e70b3d4ca29efc67fec7bc78dc7accce8263783c8"
+    image = "openjdk@sha256:bbb122b0ffbe0aa1d1149f5f0e5bb9c4663603286418d4c0d387c3804d00d39c"
     image_pull_credentials_type = "SERVICE_ROLE"
     registry_credential {
       credential = "wynne-codebuild-spike-2"

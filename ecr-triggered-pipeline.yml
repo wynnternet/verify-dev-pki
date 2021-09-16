@@ -54,6 +54,7 @@ phases:
       - ls -al
       - ls -al ./00
       - ls -al ./01
+      - cat ./01/imageDetail.json
   #      - ls -al
   #      - pwd
   #      - git rev-parse --show-toplevel

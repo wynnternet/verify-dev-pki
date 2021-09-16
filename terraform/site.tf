@@ -191,6 +191,18 @@ resource "aws_iam_role_policy" "wynne_codebuild_policy" {
             ],
             "Resource": "*",
             "Effect": "Allow"
+        },
+        {
+            "Action": [
+              "ecr:BatchCheckLayerAvailability",
+              "ecr:CompleteLayerUpload",
+              "ecr:GetAuthorizationToken",
+              "ecr:InitiateLayerUpload",
+              "ecr:PutImage",
+              "ecr:UploadLayerPart"
+            ],
+            "Resource": "*",
+            "Effect": "Allow"
         }
     ]
 }

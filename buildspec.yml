@@ -77,16 +77,17 @@ phases:
       - git tag "build_$(cat verify-dev-pki-version.txt)"
       - git push origin "build_$(cat verify-dev-pki-version.txt)"
       - cd ../verify-visual-regression-tests
-      - docker build -t verify-visual-regressions-tests .
-#    finally:
+      - docker build -t wynne-codepipeline-spike .
+
+  #    finally:
 #      - command
 #      - command
-#  post_build:
+  post_build:
 #    run-as: Linux-user-name
 #    on-failure: ABORT | CONTINUE
-#    commands:
-#      - command
-#      - command
+    commands:
+      - docker tag wynne-codepipeline-spike:latest public.ecr.aws/f1g2b6b7/wynne-codepipeline-spike:latest
+      - docker push public.ecr.aws/f1g2b6b7/wynne-codepipeline-spike:latest
 #    finally:
 #      - command
 #      - command

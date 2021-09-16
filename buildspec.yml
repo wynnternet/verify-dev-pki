@@ -87,7 +87,7 @@ phases:
 #    on-failure: ABORT | CONTINUE
     commands:
       - docker tag wynne-codepipeline-spike:latest public.ecr.aws/f1g2b6b7/wynne-codepipeline-spike:latest
-      - aws ecr-public get-login-password --region eu-west-2 | docker login --username AWS --password-stdin public.ecr.aws/f1g2b6b7
+      - aws ecr get-login-password --region eu-west-2 | docker login --username AWS --password-stdin public.ecr.aws/f1g2b6b7
       - docker push public.ecr.aws/f1g2b6b7/wynne-codepipeline-spike:latest
 #    finally:
 #      - command
